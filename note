@@ -1,0 +1,163 @@
+// initComplete: function () {   // ✅ Built-in callback
+//   this.api().columns().every(function (index) {  // ✅ Your own function
+//     console.log("Column index:", index);         // ✅ Custom logic using DataTables API
+//   });
+// }
+// $('#example').DataTable(
+  //     {
+  //         paging:true,
+  //         info:false,
+  //         order:false,
+  //         order:[[3,'desc']],
+  //         pageLength:5,
+  //         lengthMenu:[5,10,15,20,25,30,35,40,45,50,55,60],
+  //         columnDefs:[
+  //         {
+  //             targets:[0],
+  //              orderData:[0,1]
+  //         }, {
+  //             targets:[1],
+  //             orderData:[1,2]
+  //         }
+
+  //         ]
+  //     }
+  // );
+
+  //   $("table.display").DataTable(); // create two table in single line based on id can be independent
+  // console.log($.fn.dataTable.version);  -- datatable version check
+
+
+  // pagingType: "full_numbers" // or "full", "simple", etc.
+
+
+
+
+
+
+
+
+
+
+
+
+  $(document).ready(function () {
+  $("#edit_user_data").DataTable({
+    processing: true,
+    serverSide: true,
+    paging: true,
+    searching: true,
+    ordering: true,
+
+    
+  
+
+  $(document).on("click", ".editBtn", function () {
+    const userId = $(this).closest("tr").find("td:first").text();
+    window.location.href = "edit.php?id=" + userId;
+  });
+}
+});
+// delete
+$(document).on("click", ".deleteBtn", function () {
+  const userId = $(this).data("id");
+  const row = $(this).closest("tr");
+
+  if (confirm("Are you sure you want to delete this user?")) {
+    $.ajax({
+      url: "delete.php",
+      type: "POST",
+      data: { id: userId },
+      success: function (response) {
+        // $(#update_user)
+        alert("User deleted successfully.");
+        row.remove();
+      },
+      error: function () {
+        alert("Error deleting user.");
+      },
+    });
+  }
+});
+
+
+
+
+
+
+
+
+<?php
+include 'db.php'; // Connect to the database
+
+// Get filter inputs from DataTables
+
+
+// Get paging info from DataTables
+
+echo json_encode([
+    "draw" => intval($draw),
+    "recordsTotal" => $total,
+    "recordsFiltered" => $filteredTotal,
+    "data" => $data
+]);
+?>
+
+
+$start  = $_POST['start'] ?? 0;    
+$length = $_POST['length'] ?? 10;  
+$draw   = $_POST['draw'] ?? 1;     
+$totalResult = $conn->query("SELECT COUNT(*) AS total FROM reg_form");
+$total = $totalResult->fetch_assoc()['total'];
+$sql = "SELECT * FROM reg_form $where LIMIT $start, $length";
+$result = $conn->query($sql);
+$data = [];
+while ($row = $result->fetch_assoc()) {
+    $row['actions'] = '
+        <button class="editBtn" data-id="' . $row['id'] . '">Edit</button>
+        <button class="deleteBtn" data-id="' . $row['id'] . '">Delete</button>';
+    $data[] = $row;
+}
+$filterResult = $conn->query("SELECT COUNT(*) AS total FROM reg_form $where");
+$filteredTotal = $filterResult->fetch_assoc()['total'];
+
+
+
+
+
+<?php
+include 'db.php';
+$filterEmail = $_POST['filterEmail'] ?? '';
+if (isset($_POST['submitEmail'])) {
+    $e_sql = $conn->prepare("SELECT * FROM reg_form WHERE email = ?");
+    $e_sql->bind_param("s", $email);
+    $e_sql->execute();
+    $e_sql->store_result();
+} else {
+    echo "searched email not found";
+}
+$filterPhone = $_POST['filterPhone'] ?? '';
+if (isset($_POST['submitMobile'])) {
+    $p_sql = $conn->prepare("SELECT * FROM reg_form WHERE mobile_number = ?");
+    $p_sql->bind_param("s", $mobile);
+    $p_sql->execute();
+    $result = $p_sql->fetch_assoc();
+} else {
+    echo " searched mobile not found";
+}
+$filterDOB   = $_POST['filterDOB'] ?? '';
+if (isset($_POST['submitDOB'])) {
+    $dob_sql = $conn->prepare("SELECT * FROM reg_form WHERE dob = ?");
+    $dob_sql->bind_param("s",  $dob);
+    $dob_sql->execute();
+    $dob_sql->store_result();
+} else {
+    echo " searched DOB not found";
+}
+
+
+echo json_encode([
+    "filterEmail"=>$filterEmail,
+    "filterPhone"=>$filterPhone,
+    "filterDOB"=>$filterDOB
+]);
