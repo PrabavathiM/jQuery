@@ -1,5 +1,7 @@
 $(document).ready(function () {
   $("#edit_user_data").DataTable({
+    // processing: true,
+    // serverSide: true,
     paging: true,
     searching: false,
     ordering: true,
@@ -30,40 +32,37 @@ $(document).ready(function () {
   });
 });
 
-  const table = $("#edit_user_data").DataTable({
-    // processing: true,
-    // serverSide: true,
-    paging: true,
-    searching: false,
-    ordering: true,
+// const table = $("#edit_user_data").DataTable({
+//
+//   searching: false,
+//   ordering: true,
 
-    ajax: {
-      url: "DB_server_processing.php",
-      type :"POST",
-      data: function (d) {
-        d.filterEmail = $("#filterEmail").val();
-        d.filterMobile = $("#filterMobile").val();
-        d.filterDOB = $("#filterDOB").val();
-      },
-    },
-   columns: [
-  { data: "id" },
-  { data: "fullname" },
-  { data: "email" },
-  { data: "password" },
-  { data: "mobile_number" },
-  { data: "age" },
-  { data: "dob" },
-  { data: "gender" },
-  { data: "languages" },
-  { data: "city" },
-  { data: "skills" },
-  { data: "message" },
-  { data: "actions" }
-]
+//   ajax: {
+//     url: "DB_server_processing.php",
+//     type: "POST",
+//     data: function (d) {
+//       d.filterEmail = $("#filterEmail").val();
+//       d.filterMobile = $("#filterMobile").val();
+//       d.filterDOB = $("#filterDOB").val();
+//     },
+//   },
+//   columns: [
+//     { data: "id" },
+//     { data: "fullname" },
+//     { data: "email" },
+//     { data: "password" },
+//     { data: "mobile_number" },
+//     { data: "age" },
+//     { data: "dob" },
+//     { data: "gender" },
+//     { data: "languages" },
+//     { data: "city" },
+//     { data: "skills" },
+//     { data: "message" },
+//     { data: "actions" },
+//   ],
+// });
 
-  });
-
-  $("#filterEmail, #filterMobile, #filterDOB").on("keyup change", function () {
-  table.draw();
-  });
+// $("#filterEmail, #filterMobile, #filterDOB").on("keyup change", function () {
+//   table.draw();
+// });

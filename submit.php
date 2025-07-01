@@ -1,10 +1,8 @@
 <?php
-
 include 'db.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // print_r($_POST);
+
     $errors = [];
     if (empty($_POST['fullname'])) {
         $errors['fullname'] = "Please enter your full name.";
@@ -75,6 +73,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 }
-
-
-// edit

@@ -20,7 +20,6 @@
     }
   }
 
-
   if (isset($_POST["submitMobile"])) {
     $filterMobile = $_POST["filterMobile"];
 
@@ -36,7 +35,6 @@
       }
     }
   }
-
 
   if (isset($_POST["submitDOB"])) {
     $filterDOB = $_POST["filterDOB"];
@@ -142,8 +140,6 @@
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.jqueryui.js"></script>
     <script src="dashboard_script.js"></script>
-
-
   </body>
 
   </html>
