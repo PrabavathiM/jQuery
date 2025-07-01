@@ -1,10 +1,58 @@
   <?php
   include 'db.php';
+
   $sql = "SELECT id,fullname, email, password,mobile_number,age ,dob, gender,languages ,city, skills,message FROM reg_form";
   $result = $conn->query($sql);
 
+  if (isset($_POST["submitEmail"])) {
+    $filterEmail = $_POST["filterEmail"];
+
+    if ($filterEmail) {
+      $sql = $conn->prepare("SELECT * FROM reg_form WHERE email LIKE ?");
+      $sql->bind_param("s", $filterEmail);
+      $sql->execute();
+      $result = $sql->get_result();
+      if ($result->num_rows > 0) {
+      } else {
+        echo "No results found.";
+        exit;
+      }
+    }
+  }
 
 
+  if (isset($_POST["submitMobile"])) {
+    $filterMobile = $_POST["filterMobile"];
+
+    if ($filterMobile) {
+      $sql = $conn->prepare("SELECT * FROM reg_form WHERE mobile_number LIKE ?");
+      $sql->bind_param("s", $filterMobile);
+      $sql->execute();
+      $result = $sql->get_result();
+      if ($result->num_rows > 0) {
+      } else {
+        echo "No results found.";
+        exit;
+      }
+    }
+  }
+
+
+  if (isset($_POST["submitDOB"])) {
+    $filterDOB = $_POST["filterDOB"];
+
+    if ($filterDOB) {
+      $sql = $conn->prepare("SELECT * FROM reg_form WHERE dob LIKE ?");
+      $sql->bind_param("s", $filterDOB);
+      $sql->execute();
+      $result = $sql->get_result();
+      if ($result->num_rows > 0) {
+      } else {
+        echo "No results found.";
+        exit;
+      }
+    }
+  }
 
   ?>
   <!DOCTYPE html>
@@ -23,14 +71,18 @@
 
   <body>
     <br>
-    <form action="" method="POST" >
-      <input type="text" id="filterEmail" placeholder="Search by Email"> 
-      <button type="submit" name="submitEmail"> Search Email</button>
-      <input type="text" id="filterMobile" placeholder="Search by Mobile"> 
-      <button type="submit" name="submitMobile"> Search Mobile </button>
-      <input type="text" id="filterDOB" placeholder="Search by DOB (yyyy-mm-dd)"> 
-      <button type="submit" name="submitDOB"> Search DOB </button>
+
+    <form action="" method="POST">
+      <input type="text" id="filterEmail" name="filterEmail" placeholder="Search by Email">
+      <button type="submit" name="submitEmail">Search Email</button>
+
+      <input type="text" id="filterMobile" name="filterMobile" placeholder="Search by Mobile">
+      <button type="submit" name="submitMobile">Search Mobile</button>
+
+      <input type="text" id="filterDOB" name="filterDOB" placeholder="Search by DOB (yyyy-mm-dd)">
+      <button type="submit" name="submitDOB">Search DOB</button>
     </form>
+
 
 
     <br>
@@ -75,10 +127,6 @@
                 <button type="button" class="btn btn-danger deleteBtn" data-id="<?= $row['id'] ?>">Delete</button>
               </td>
 
-
-
-
-              </td>
             </tr>
           <?php endwhile; ?>
         <?php else: ?>

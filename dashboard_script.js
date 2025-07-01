@@ -1,42 +1,9 @@
 $(document).ready(function () {
-  const table = $("#edit_user_data").DataTable({
-    processing: true,
-    serverSide: true,
+  $("#edit_user_data").DataTable({
     paging: true,
     searching: false,
     ordering: true,
-
-    ajax: {
-      url: "DB_server_processing.php",   
-      type :"POST", 
-      data: function (d) {
-        d.filterEmail = $("#filterEmail").val();
-        d.filterMobile = $("#filterMobile").val();
-        d.filterDOB = $("#filterDOB").val();
-      },   
-    },
-   columns: [
-  { data: "id" }, 
-  { data: "fullname" },
-  { data: "email" }, 
-  { data: "password" },
-  { data: "mobile_number" },  
-  { data: "age" },
-  { data: "dob" },
-  { data: "gender" },
-  { data: "languages" },
-  { data: "city" },
-  { data: "skills" },
-  { data: "message" },
-  { data: "actions" }  
-]
-
   });
-
-  $("#filterEmail, #filterMobile, #filterDOB").on("keyup change", function () {
-  table.draw();
-  });
-
   $(document).on("click", ".editBtn", function () {
     const userId = $(this).closest("tr").find("td:first").text();
     window.location.href = "edit.php?id=" + userId;
@@ -62,3 +29,41 @@ $(document).ready(function () {
     }
   });
 });
+
+  const table = $("#edit_user_data").DataTable({
+    // processing: true,
+    // serverSide: true,
+    paging: true,
+    searching: false,
+    ordering: true,
+
+    ajax: {
+      url: "DB_server_processing.php",
+      type :"POST",
+      data: function (d) {
+        d.filterEmail = $("#filterEmail").val();
+        d.filterMobile = $("#filterMobile").val();
+        d.filterDOB = $("#filterDOB").val();
+      },
+    },
+   columns: [
+  { data: "id" },
+  { data: "fullname" },
+  { data: "email" },
+  { data: "password" },
+  { data: "mobile_number" },
+  { data: "age" },
+  { data: "dob" },
+  { data: "gender" },
+  { data: "languages" },
+  { data: "city" },
+  { data: "skills" },
+  { data: "message" },
+  { data: "actions" }
+]
+
+  });
+
+  $("#filterEmail, #filterMobile, #filterDOB").on("keyup change", function () {
+  table.draw();
+  });

@@ -62,13 +62,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
 
             try {
-              
-                    $stmt = $conn->prepare("INSERT INTO reg_form (fullname, email, password, mobile_number, dob, gender, languages, city, skills, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("ssssssssss", $fullname, $email, $password, $mobile, $dob, $gender, $languages, $city, $skills, $message);
-                    $stmt->execute();
-                    echo json_encode(["status_code" => "200"]);
-                    exit;
-                
+
+                $stmt = $conn->prepare("INSERT INTO reg_form (fullname, email, password, mobile_number, dob, gender, languages, city, skills, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssssssssss", $fullname, $email, $password, $mobile, $dob, $gender, $languages, $city, $skills, $message);
+                $stmt->execute();
+                echo json_encode(["status_code" => "200"]);
+                exit;
             } catch (Exception $e) {
                 echo json_encode(["status_code" => "500"]);
                 exit;
