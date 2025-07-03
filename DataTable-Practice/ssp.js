@@ -1,5 +1,6 @@
 $(document).ready(function (){
-    $('#example').DataTable({
+  table= $('#example').DataTable({
+    searching: false,
     processing: true,
     serverSide: true,
     paging: true,
@@ -10,7 +11,19 @@ $(document).ready(function (){
     ajax: {
         url: 'ssp.php',
         type: 'POST',
-        dataType: "json"
-    }
+        dataType: "json",
+        data:function(d){
+            d.fname = $('#fname').val();
+        }
+
+        // dataSrc: function(json){
+            // console.log(json);      // display the send data
+        //     return json.data
+        // }
+    }   
     });
+});
+
+$('#search').on('click', function(){
+ table.ajax.reload();
 });
