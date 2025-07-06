@@ -13,17 +13,13 @@ $(document).ready(function (){
         type: 'POST',
         dataType: "json",
         data:function(d){
-            d.fname = $('#fname').val();
+            d.first_name = $('#first_name').val();
+            d.office = $('#office').val();
+            d.Salary = $('#Salary').val();
         }
-
-        // dataSrc: function(json){
-            // console.log(json);      // display the send data
-        //     return json.data
-        // }
     }   
     });
 });
-
 $('#search').on('click', function(){
  table.ajax.reload();
 });
