@@ -23,12 +23,30 @@
       <div class="card text-center">
         <div class="card-header">
           <h1 class="card-title text-center">Searching</h1>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button id ="export_cvs">Export to CSV</button>
+          </div>
         </div>
         <div class="card-body">
           <div>
-            <input type="text" id="first_name" name="fname" placeholder="Search by First name" />
-            <input type="text" id="office" name="office" placeholder="Search by office " />
-            <input type="text" id="Salary" name="Salary" placeholder="Search by Salary" />
+            <input
+              type="text"
+              id="first_name"
+              name="fname"
+              placeholder="Search by First name"
+            />
+            <input
+              type="text"
+              id="office"
+              name="office"
+              placeholder="Search by office "
+            />
+            <input
+              type="text"
+              id="Salary"
+              name="Salary"
+              placeholder="Search by Salary"
+            />
             <br />
             <br />
             <button type="button" id="search">Search</button>
@@ -61,5 +79,12 @@
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.3.2/js/dataTables.jqueryui.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.2.4/js/dataTables.buttons.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.2.4/js/buttons.jqueryui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.2.4/js/buttons.html5.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/3.2.4/js/buttons.print.min.js"></script>
   <script src="ssp.js"></script>
 </html>
