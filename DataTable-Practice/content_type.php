@@ -8,14 +8,6 @@ $data = [
 ];
 
 
- 
-
-
-header('Content-Type: text/csv');
-header('Content-Disposition: attachment; filename="data.csv"');
-header('Pragma: no-cache');
-header('Expires: 0');
-
 
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment; filename="data.csv"');
