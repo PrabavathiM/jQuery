@@ -6,7 +6,7 @@ $data = [
     ["Bob", "bob@example.com", 30],
     ["preethi", "preethi@gmail.com"]
 ];
-// update code to the main branch 
+// update code to the praba branch code update to now
 
 
 header('Content-Type: text/csv');
