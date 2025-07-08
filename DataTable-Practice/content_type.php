@@ -7,13 +7,13 @@ $data = [
     ["preethi", "preethi@gmail.com"]
 ];
 
-// Set headers to force download
+
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment; filename="data.csv"');
 header('Pragma: no-cache');
 header('Expires: 0');
 
-// Open output stream
+
 $output = fopen('php://output', 'w');
 
 foreach ($data as $row) {
