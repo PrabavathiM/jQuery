@@ -4,7 +4,6 @@ $data = [
     ["Name", "Email", "Age"],
     ["Alice", "alice@example.com", 25],
     ["Bob", "bob@example.com", 30],
-    ["Charlie", "charlie@example.com", 22],
 ];
 
 // Set headers to force download
@@ -16,7 +15,6 @@ header('Expires: 0');
 // Open output stream
 $output = fopen('php://output', 'w');
 
-// Write each row to CSV
 foreach ($data as $row) {
     fputcsv($output, $row);
 }
