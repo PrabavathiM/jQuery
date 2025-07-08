@@ -1,5 +1,5 @@
 <?php
-// Sample array
+
 $data = [
     ["Name", "Email", "Age"],
     ["Alice", "alice@example.com", 25],
